@@ -10,9 +10,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   double cf = 0.0;
+  double aElectric = 0, pElectric = 0, aNG = 0, pNG = 0, aCar = 0, pCar = 0;
 
   double calculateCF(double aElectric, double pElectric, double aNG, double pNG,
-      double aCar, pCar) {
+      double aCar, double pCar) {
     return ((aElectric / pElectric) * 1.37) +
         ((aNG / pNG) * 120.61) +
         ((aCar / pCar) * 19.4 * (100 / 95));
@@ -23,11 +24,45 @@ class _HomePageState extends State<HomePage> {
     return Container(
       child: Column(
         children: <Widget>[
-          Text('You used ' + cf.toString()),
-          InputContainerHouse("Elctectricity bill per month", "Price per kWh", this),
+          Container(
+            color: Colors.red,
+            height: 75,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Icon(Icons.arrow_left),
+                Text(
+                  'Current month',
+                  style: TextStyle(fontSize: 20),
+                ),
+                Icon(Icons.arrow_right),
+              ],
+            ),
+          ),
+          Text(
+            cf.toStringAsFixed(2),
+            style: TextStyle(fontSize: 30),
+          ),
+          Text('pounds of CO2 emissions'),
+          Row(
+            children: <Widget>[
+              Expanded(
+                child: Container(
+                  child: Text('Scan Item'),
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  child: Text('Stats'),
+                ),
+              ),
+            ],
+          ),
+          InputContainerHouse("Elctectricity bill", "Price per kWh", this, 1),
           InputContainerHouse(
-              "Natural gas bill per month", "Price per 1000 ft^3", this),
-          InputContainerHouse("Miles driven per month", "MPG", this),
+              "Natural gas bill", "Price per 1000 ft^3", this, 2),
+          InputContainerHouse("Miles driven", "MPG", this, 3),
         ],
       ),
     );
@@ -76,7 +111,8 @@ class InputContainerHouse extends StatefulWidget {
   final String title;
   final String units;
   final _HomePageState parent;
-  InputContainerHouse(this.title, this.units, this.parent);
+  final int id;
+  InputContainerHouse(this.title, this.units, this.parent, this.id);
 
   @override
   _InputContainerHouseState createState() => _InputContainerHouseState();
@@ -85,9 +121,58 @@ class InputContainerHouse extends StatefulWidget {
 class _InputContainerHouseState extends State<InputContainerHouse> {
   void updateCF(String input) {
     widget.parent.setState(() {
-      widget.parent.cf = double.parse(input);
+      switch (widget.id) {
+        case 1:
+          widget.parent.aElectric = double.parse(input);
+          break;
+        case 2:
+          widget.parent.aNG = double.parse(input);
+          break;
+        case 3:
+          widget.parent.aCar = double.parse(input);
+          break;
+        default:
+          print("switch case default in home.dart");
+          break;
+      }
+      ;
+      widget.parent.cf = widget.parent.calculateCF(
+          widget.parent.aElectric,
+          widget.parent.pElectric,
+          widget.parent.aNG,
+          widget.parent.pNG,
+          widget.parent.aCar,
+          widget.parent.pCar);
     });
   }
+
+  void updateCF2(String input) {
+    widget.parent.setState(() {
+      switch (widget.id) {
+        case 1:
+          widget.parent.pElectric = double.parse(input);
+          break;
+        case 2:
+          widget.parent.pNG = double.parse(input);
+          break;
+        case 3:
+          widget.parent.pCar = double.parse(input);
+          break;
+        default:
+          print("switch case default in home.dart");
+          break;
+      }
+      ;
+      widget.parent.cf = widget.parent.calculateCF(
+          widget.parent.aElectric,
+          widget.parent.pElectric,
+          widget.parent.aNG,
+          widget.parent.pNG,
+          widget.parent.aCar,
+          widget.parent.pCar);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -109,7 +194,7 @@ class _InputContainerHouseState extends State<InputContainerHouse> {
               inputFormatters: <TextInputFormatter>[
                 WhitelistingTextInputFormatter.digitsOnly
               ],
-              onSubmitted: updateCF,
+              onChanged: updateCF,
             ),
           ),
           SizedBox(
@@ -124,6 +209,7 @@ class _InputContainerHouseState extends State<InputContainerHouse> {
               inputFormatters: <TextInputFormatter>[
                 WhitelistingTextInputFormatter.digitsOnly
               ],
+              onChanged: updateCF2,
             ),
           ),
         ],
