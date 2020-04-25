@@ -6,13 +6,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  double calculateCF(double home, double heat, double car, double train, double bus) {
+    return (2*home*1.37*0.033);
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: <Widget>[
+          Text('You used '),
           InputContainer("Hours home: ", 5.0),
           InputContainer("Hours heating: ", 5.0),
+          InputContainer("Hours hot water: ", 5.0),
           InputContainer("Miles in car: ", 5.0),
           InputContainer("Miles in train or similar: ", 5.0),
           InputContainer("Miles in bus: ", 5.0),
