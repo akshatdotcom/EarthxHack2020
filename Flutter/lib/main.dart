@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'leaderboard.dart';
+import 'achievements.dart';
+import 'home.dart';
 
-void main() => runApp(MyApp());
-
+void main() {
+  runApp(MyApp());
+  SystemChrome.setEnabledSystemUIOverlays([]);
+}
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      title: 'EarthXHack',
+      theme: ThemeData.light(),
       home: MyHomePage(),
     );
   }
@@ -24,10 +28,41 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int currentIndex = 1;
+  void switchIndex(int index) {
+    setState(() {
+      currentIndex = index;
+    });
+  }
+
+  List<Widget> pages = [
+    AchievementsPage(),
+    HomePage(),
+    LeaderboardPage(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      body: pages[currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        onTap: switchIndex,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.ac_unit),
+            title: Text('Achievements'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.access_alarm),
+            title: Text('Home'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.access_time),
+            title: Text('Leaderboard'),
+          ),
+        ],
+      ),
     );
   }
 }
