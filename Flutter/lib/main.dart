@@ -50,15 +50,15 @@ class _MyHomePageState extends State<MyHomePage> {
         onTap: switchIndex,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.ac_unit),
+            icon: Icon(Icons.flag),
             title: Text('Achievements'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.access_alarm),
+            icon: Icon(Icons.home),
             title: Text('Home'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.access_time),
+            icon: Icon(Icons.format_list_numbered),
             title: Text('Leaderboard'),
           ),
         ],

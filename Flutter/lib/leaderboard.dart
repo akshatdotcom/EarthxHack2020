@@ -9,7 +9,81 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.red,
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            LeaderboardItem('Reese H.', 1),
+            LeaderboardItem('Reese H.', 2),
+            LeaderboardItem('Reese H.', 3),
+            LeaderboardItem('Reese H.', 4),
+            LeaderboardItem('Reese H.', 5),
+            LeaderboardItem('Reese H.', 6),
+            LeaderboardItem('Reese H.', 7),
+            LeaderboardItem('Reese H.', 8),
+            LeaderboardItem('Reese H.', 9),
+            LeaderboardItem('Reese H.', 10),
+            LeaderboardItem('Reese H.', 11),
+            LeaderboardItem('Reese H.', 12),
+            LeaderboardItem('Reese H.', 13),
+            LeaderboardItem('Reese H.', 14),
+            LeaderboardItem('Reese H.', 15),
+            LeaderboardItem('Reese H.', 16),
+            LeaderboardItem('Reese H.', 17),
+            LeaderboardItem('Reese H.', 18),
+            LeaderboardItem('Reese H.', 19),
+            LeaderboardItem('Reese H.', 20),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class LeaderboardItem extends StatefulWidget {
+  final String user;
+  final int place;
+  LeaderboardItem(this.user, this.place);
+  @override
+  _LeaderboardItemState createState() => _LeaderboardItemState();
+}
+
+class _LeaderboardItemState extends State<LeaderboardItem> {
+  Color bgColor;
+  @override
+  Widget build(BuildContext context) {
+    if (widget.place == 1) {
+      bgColor = Colors.orange[300];
+    } else if (widget.place == 2) {
+      bgColor = Colors.grey;
+    } else if (widget.place == 3) {
+      bgColor = Colors.brown[300];
+    } else {
+      bgColor = Colors.grey[400];
+    }
+    return InkWell(
+      child: Container(
+        margin: EdgeInsets.all(10),
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: bgColor,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Row(
+          children: <Widget>[
+            Text(
+              widget.user,
+              style: TextStyle(fontSize: 20),
+            ),
+            Expanded(
+              child: SizedBox(),
+            ),
+            Text(
+              widget.place.toString(),
+              style: TextStyle(fontSize: 20),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

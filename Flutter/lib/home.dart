@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
 //final textEditingController = TextEditingController();
@@ -12,58 +13,80 @@ class _HomePageState extends State<HomePage> {
   double cf = 0.0;
   double aElectric = 0, pElectric = 0, aNG = 0, pNG = 0, aCar = 0, pCar = 0;
 
-  double calculateCF(double aElectric, double pElectric, double aNG, double pNG,
-      double aCar, double pCar) {
-    return ((aElectric / pElectric) * 1.37) +
-        ((aNG / pNG) * 120.61) +
-        ((aCar / pCar) * 19.4 * (100 / 95));
+  double calculateCF(double aElectric, double pElectric, double aNG, double pNG, double aCar, double pCar) {
+    return ((aElectric / pElectric) * 1.37) + ((aNG / pNG) * 120.61) + ((aCar / pCar) * 19.4 * (100 / 95));
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(
-        children: <Widget>[
-          Container(
-            color: Colors.red,
-            height: 75,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+      child: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Container(
+              color: Colors.red,
+              height: 75,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Icon(Icons.arrow_left),
+                  Text(
+                    'Current month',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Icon(Icons.arrow_right),
+                ],
+              ),
+            ),
+            Text(
+              cf.toStringAsFixed(2),
+              style: TextStyle(fontSize: 30),
+            ),
+            Text('pounds of CO2 emissions'),
+            Row(
               children: <Widget>[
-                Icon(Icons.arrow_left),
-                Text(
-                  'Current month',
-                  style: TextStyle(fontSize: 20),
+                Expanded(
+                  child: Container(
+                    margin: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(5),
+                    height: 100,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[400],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Scan Item',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
                 ),
-                Icon(Icons.arrow_right),
+                Expanded(
+                  child: Container(
+                    margin: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(5),
+                    height: 100,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[400],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Stats',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
-          ),
-          Text(
-            cf.toStringAsFixed(2),
-            style: TextStyle(fontSize: 30),
-          ),
-          Text('pounds of CO2 emissions'),
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: Container(
-                  child: Text('Scan Item'),
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  child: Text('Stats'),
-                ),
-              ),
-            ],
-          ),
-          InputContainerHouse("Elctectricity bill", "Price per kWh", this, 1),
-          InputContainerHouse(
-              "Natural gas bill", "Price per 1000 ft^3", this, 2),
-          InputContainerHouse("Miles driven", "MPG", this, 3),
-        ],
+            InputContainerHouse("Elctectricity bill", "Price per kWh", this, 1),
+            InputContainerHouse("Natural gas bill", "Price per 1000 ft^3", this, 2),
+            InputContainerHouse("Miles driven", "MPG", this, 3),
+          ],
+        ),
       ),
     );
   }
@@ -137,12 +160,7 @@ class _InputContainerHouseState extends State<InputContainerHouse> {
       }
       ;
       widget.parent.cf = widget.parent.calculateCF(
-          widget.parent.aElectric,
-          widget.parent.pElectric,
-          widget.parent.aNG,
-          widget.parent.pNG,
-          widget.parent.aCar,
-          widget.parent.pCar);
+          widget.parent.aElectric, widget.parent.pElectric, widget.parent.aNG, widget.parent.pNG, widget.parent.aCar, widget.parent.pCar);
     });
   }
 
@@ -164,12 +182,7 @@ class _InputContainerHouseState extends State<InputContainerHouse> {
       }
       ;
       widget.parent.cf = widget.parent.calculateCF(
-          widget.parent.aElectric,
-          widget.parent.pElectric,
-          widget.parent.aNG,
-          widget.parent.pNG,
-          widget.parent.aCar,
-          widget.parent.pCar);
+          widget.parent.aElectric, widget.parent.pElectric, widget.parent.aNG, widget.parent.pNG, widget.parent.aCar, widget.parent.pCar);
     });
   }
 
@@ -191,9 +204,7 @@ class _InputContainerHouseState extends State<InputContainerHouse> {
                 labelText: (widget.title),
               ),
               keyboardType: TextInputType.number,
-              inputFormatters: <TextInputFormatter>[
-                WhitelistingTextInputFormatter.digitsOnly
-              ],
+              //inputFormatters: <TextInputFormatter>[WhitelistingTextInputFormatter.digitsOnly],
               onChanged: updateCF,
             ),
           ),
@@ -206,9 +217,7 @@ class _InputContainerHouseState extends State<InputContainerHouse> {
                 labelText: (widget.units),
               ),
               keyboardType: TextInputType.number,
-              inputFormatters: <TextInputFormatter>[
-                WhitelistingTextInputFormatter.digitsOnly
-              ],
+              //inputFormatters: <TextInputFormatter>[WhitelistingTextInputFormatter.digitsOnly],
               onChanged: updateCF2,
             ),
           ),
