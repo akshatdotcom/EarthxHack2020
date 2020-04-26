@@ -85,6 +85,12 @@ class _HomePageState extends State<HomePage> {
             InputContainerHouse("Elctectricity bill", "Price per kWh", this, 1),
             InputContainerHouse("Natural gas bill", "Price per 1000 ft^3", this, 2),
             InputContainerHouse("Miles driven", "MPG", this, 3),
+            RaisedButton(
+              onPressed: () {
+                Navigator.of(context).pushReplacementNamed('/login');
+              },
+              child: Text("Logout"),
+            ),
           ],
         ),
       ),

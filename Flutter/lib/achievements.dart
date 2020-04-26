@@ -64,20 +64,20 @@ class _AchievementItemState extends State<AchievementItem> {
       ),
       onTap: () {
         showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text(widget.title),
-                content: Text(widget.description),
-                actions: <Widget>[
-                  FlatButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text('Close'))
-                ],
-              );
-            });
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text(widget.title),
+              content: Text(widget.description),
+              actions: <Widget>[
+                FlatButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('Close'))
+              ],
+            );
+          });
       },
     );
   }

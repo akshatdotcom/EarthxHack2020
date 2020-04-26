@@ -1,38 +1,28 @@
 import 'package:flutter/material.dart';
+import 'data.dart';
+import 'globals.dart' as globals;
 
 class LeaderboardPage extends StatefulWidget {
   @override
   _LeaderboardPageState createState() => _LeaderboardPageState();
 }
-
 class _LeaderboardPageState extends State<LeaderboardPage> {
+
+  static final Data data = Data();
+  _LeaderboardPageState() {
+    var leaderboard = data.getUsers();
+    globals.leaderboardItems.clear();
+    for(int i = 0; i < leaderboard.length+1; i++) {
+      globals.leaderboardItems.add(LeaderboardItem(leaderboard[0][i], leaderboard[1][i]));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: SingleChildScrollView(
         child: Column(
-          children: <Widget>[
-            LeaderboardItem('Reese H.', 1),
-            LeaderboardItem('Reese H.', 2),
-            LeaderboardItem('Reese H.', 3),
-            LeaderboardItem('Reese H.', 4),
-            LeaderboardItem('Reese H.', 5),
-            LeaderboardItem('Reese H.', 6),
-            LeaderboardItem('Reese H.', 7),
-            LeaderboardItem('Reese H.', 8),
-            LeaderboardItem('Reese H.', 9),
-            LeaderboardItem('Reese H.', 10),
-            LeaderboardItem('Reese H.', 11),
-            LeaderboardItem('Reese H.', 12),
-            LeaderboardItem('Reese H.', 13),
-            LeaderboardItem('Reese H.', 14),
-            LeaderboardItem('Reese H.', 15),
-            LeaderboardItem('Reese H.', 16),
-            LeaderboardItem('Reese H.', 17),
-            LeaderboardItem('Reese H.', 18),
-            LeaderboardItem('Reese H.', 19),
-            LeaderboardItem('Reese H.', 20),
-          ],
+          children: globals.leaderboardItems,
         ),
       ),
     );

@@ -3,14 +3,13 @@ import 'package:flutter/services.dart';
 import 'leaderboard.dart';
 import 'achievements.dart';
 import 'home.dart';
+import 'signin.dart';
 import 'data.dart';
 
 void main() {
   runApp(MyApp());
   SystemChrome.setEnabledSystemUIOverlays([]);
   Data data = Data();
-  //data.setData();
-  data.getData();
 }
 class MyApp extends StatelessWidget {
   @override
@@ -18,7 +17,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'EarthXHack',
       theme: ThemeData.light(),
-      home: MyHomePage(),
+      home: SignInPage(),
+      routes: <String, WidgetBuilder>{
+        '/home': (BuildContext context) => MyHomePage(),
+        '/login': (BuildContext context) => SignInPage(),
+    },
     );
   }
 }
