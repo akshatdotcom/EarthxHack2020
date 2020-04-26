@@ -10,8 +10,8 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
 
   static final Data data = Data();
   _LeaderboardPageState() {
-    var leaderboard = data.getUsers();
     globals.leaderboardItems.clear();
+    var leaderboard = data.getUsers();
     for(int i = 0; i < leaderboard.length+1; i++) {
       globals.leaderboardItems.add(LeaderboardItem(leaderboard[0][i], leaderboard[1][i]));
     }
@@ -47,8 +47,8 @@ class _LeaderboardItemState extends State<LeaderboardItem> {
       bgColor = Colors.grey;
     } else if (widget.place == 3) {
       bgColor = Colors.brown[300];
-    } else {
-      bgColor = Colors.grey[400];
+    } else if(widget.place > 3) {
+      bgColor = Colors.grey[800];
     }
     return InkWell(
       child: Container(

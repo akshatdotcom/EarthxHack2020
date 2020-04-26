@@ -32,7 +32,7 @@ class Data {
     tempUsers.sort((m1, m2) {
       return double.parse(m1["score"]).compareTo(double.parse(m2["score"]));
     });
-    var leaderboard = List.generate(2, (i) => List(tempUsers.length), growable: false);
+    var leaderboard = List.generate(users.length-1, (i) => List(tempUsers.length), growable: false);
     for (int i = 0; i < tempUsers.length; i++) {
       leaderboard[0][i] = tempUsers[i]["username"];
       leaderboard[1][i] = i+1;
