@@ -164,7 +164,7 @@ class _InputContainerHouseState extends State<InputContainerHouse> {
           print("switch case default in home.dart");
           break;
       }
-      ;
+      
       widget.parent.cf = widget.parent.calculateCF(
           widget.parent.aElectric, widget.parent.pElectric, widget.parent.aNG, widget.parent.pNG, widget.parent.aCar, widget.parent.pCar);
     });
@@ -186,7 +186,7 @@ class _InputContainerHouseState extends State<InputContainerHouse> {
           print("switch case default in home.dart");
           break;
       }
-      ;
+      
       widget.parent.cf = widget.parent.calculateCF(
           widget.parent.aElectric, widget.parent.pElectric, widget.parent.aNG, widget.parent.pNG, widget.parent.aCar, widget.parent.pCar);
     });
