@@ -15,8 +15,8 @@ class Data {
     });
   }
 
-  void addUser(String username, String password, double score, String achievements, double aElectic, double pElectric, double aNG, double pNG, double aCar, double pcar) {
-    Map<String, String> user = {"username": username, "password": password, "score": score.toString(), "achievements": achievements, "eElectric": aElectic.toString(), "pElectric": pElectric.toString(), "aNG": aNG.toString(), "pNG": pNG.toString(), "aCar": aCar.toString(), "pCar": pcar.toString()};
+  void addUser(String username, String password, double score, String achievements, double aElectric, double pElectric, double aNG, double pNG, double aCar, double pCar) {
+    Map<String, String> user = {"username": username, "password": password, "score": score.toString(), "achievements": achievements, "eElectric": aElectric.toString(), "pElectric": pElectric.toString(), "aNG": aNG.toString(), "pNG": pNG.toString(), "aCar": aCar.toString(), "pCar": pCar.toString()};
     firestore.collection("users").document(username).setData(user);
     initializeData();
   }

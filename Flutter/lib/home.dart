@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'data.dart';
+import 'globals.dart' as globals;
 
 //final textEditingController = TextEditingController();
 
@@ -148,6 +150,7 @@ class InputContainerHouse extends StatefulWidget {
 }
 
 class _InputContainerHouseState extends State<InputContainerHouse> {
+  Data data = Data();
   void updateCF(String input) {
     widget.parent.setState(() {
       switch (widget.id) {
@@ -167,6 +170,7 @@ class _InputContainerHouseState extends State<InputContainerHouse> {
       
       widget.parent.cf = widget.parent.calculateCF(
           widget.parent.aElectric, widget.parent.pElectric, widget.parent.aNG, widget.parent.pNG, widget.parent.aCar, widget.parent.pCar);
+      data.addUser(globals.currentUser, data.getData(globals.currentUser, "password"), widget.parent.cf, "0", widget.parent.aElectric, widget.parent.pElectric, widget.parent.aNG, widget.parent.pNG, widget.parent.aCar, widget.parent.pCar);
     });
   }
 
@@ -189,6 +193,7 @@ class _InputContainerHouseState extends State<InputContainerHouse> {
       
       widget.parent.cf = widget.parent.calculateCF(
           widget.parent.aElectric, widget.parent.pElectric, widget.parent.aNG, widget.parent.pNG, widget.parent.aCar, widget.parent.pCar);
+      data.addUser(globals.currentUser, data.getData(globals.currentUser, "password"), widget.parent.cf, "0", widget.parent.aElectric, widget.parent.pElectric, widget.parent.aNG, widget.parent.pNG, widget.parent.aCar, widget.parent.pCar);
     });
   }
 

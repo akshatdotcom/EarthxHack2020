@@ -13,6 +13,14 @@ class _AchievementsPageState extends State<AchievementsPage> {
         child: Column(
           children: <Widget>[
             AchievementItem('Carbon Cop', 'Have a monthly carbon emission of less than 10,000 lbs.', true),
+            AchievementItem('Carbon Fighter', 'Have a monthly carbon emission of less than 8,000 lbs.', true),
+            AchievementItem('Carbon Warrior', 'Have a monthly carbon emission of less than 6,000 lbs.', true),
+            AchievementItem('Carbon Ninja', 'Have a monthly carbon emission of less than 4,000 lbs.', true),
+            AchievementItem('Carbon Destroyer', 'Have a monthly carbon emission of less than 2,000 lbs.', true),
+            AchievementItem('Better than Most', 'Place in the top 50% at some point', true),
+            AchievementItem('Better than Many', 'Place in the top 25% at some point', true),
+            AchievementItem('Better than Almost Everyone', 'Place in the top 10% at some point', true),
+            AchievementItem('Better than Everyone', 'Place in the top spot at some point', true),
           ],
         ),
       ),
