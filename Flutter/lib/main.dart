@@ -3,10 +3,14 @@ import 'package:flutter/services.dart';
 import 'leaderboard.dart';
 import 'achievements.dart';
 import 'home.dart';
+import 'data.dart';
 
 void main() {
   runApp(MyApp());
   SystemChrome.setEnabledSystemUIOverlays([]);
+  Data data = Data();
+  //data.setData();
+  data.getData();
 }
 class MyApp extends StatelessWidget {
   @override

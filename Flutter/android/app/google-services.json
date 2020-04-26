@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "762952974598",
+    "firebase_url": "https://earthxhack2020-6ee98.firebaseio.com",
+    "project_id": "earthxhack2020-6ee98",
+    "storage_bucket": "earthxhack2020-6ee98.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762952974598:android:46ea6eb96814a30c11de87",
+        "android_client_info": {
+          "package_name": "com.example.earthxhack"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "762952974598-3roevfgtk63nejd7prj33gb22g79hto9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAd62hxVYmoLinedFplrl86Dp1K2oxtmSU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "762952974598-3roevfgtk63nejd7prj33gb22g79hto9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
